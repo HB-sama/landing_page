@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rénovation d'Ampleur - MaPrimeRénov'</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="header-logos">
+            <img src="images/banner-logo-france-relance-maprime-renov.png" alt="République Française et France Relance" class="gov-logo">
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Vos travaux de Rénovations pris en charge jusqu'à <span class="highlight">70 000€</span> Grâce au dispositif de la Rénovation d'Ampleur (Anciennement Rénovation Globale)</h1>
+                
+                <div class="renovation-info">
+                    <p>Bénéficiez d'un ensemble de <strong>travaux de rénovation énergétique</strong> comprenant 
+                        <span class="highlight-orange">l'isolation</span>, 
+                        <span class="highlight-orange">l'installation d'une pompe à chaleur et d'une VMC</span> 
+                        Grâce au dispositif de la Rénovation d'ampleur</p>
+                </div>
+
+                <div class="simulation-card">
+                    <div class="simulation-header">
+                        <img src="images/cropped-telechargement-300x300.png" alt="Check Icon" class="check-icon">
+                        <h2>Simulation Gratuite</h2>
+                    </div>
+                    
+                    <h3>Vérifiez Votre Éligibilité à la Rénovation d'Ampleur et découvrez le montant de vos Aides</h3>
+                    <p class="gratuit">100% Gratuit et sans engagements</p>
+
+                    <form class="eligibility-form" id="multi-step-form">
+                        <!-- Barre de progression -->
+                        <div class="progress-bar">
+                            <div class="progress" id="form-progress"></div>
+                        </div>
+
+                        <!-- Étape 1 -->
+                        <div class="form-step" id="step-1" data-step="1">
+                            <div class="step-header">
+                                <span class="step-percentage">5%</span>
+                            </div>
+                            <h4>Quel type de travaux souhaitez-vous effectuer dans le cadre de votre renovation d'ampleur ? *</h4>
+                            <div class="form-options">
+                                <label class="option-box">
+                                    <input type="radio" name="type_travaux" value="pompe" required>
+                                    <span>L'installation d'une Pompe à Chaleur</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="type_travaux" value="isolation" required>
+                                    <span>L'isolation de votre Maison (Combles,Planchers bas)</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="type_travaux" value="vmc" required>
+                                    <span>La pose d'une Ventilation Mécanique Contrôlée (VMC)</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="type_travaux" value="isolation-ext" required>
+                                    <span>Isolation Extérieure</span>
+                                </label>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="next-btn">Suivant</button>
+                            </div>
+                        </div>
+
+                        <!-- Étape 2 -->
+                        <div class="form-step" id="step-2" data-step="2" style="display: none;">
+                            <div class="step-header">
+                                <span class="step-percentage">13%</span>
+                            </div>
+                            <h4>VOUS ÊTES ? *</h4>
+                            <div class="form-options image-options">
+                                <label class="option-box image-option">
+                                    <input type="radio" name="statut" value="proprietaire" required>
+                                    <div class="option-content">
+                                        <img src="images/proprietaire.png" alt="Propriétaire">
+                                        <span>PROPRIÉTAIRE</span>
+                                    </div>
+                                </label>
+                                <label class="option-box image-option">
+                                    <input type="radio" name="statut" value="locataire" required>
+                                    <div class="option-content">
+                                        <img src="images/locataire.png" alt="Locataire">
+                                        <span>LOCATAIRE</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Précédent</button>
+                                <button type="button" class="next-btn">Suivant</button>
+                            </div>
+                        </div>
+
+                        <!-- Étape 3 -->
+                        <div class="form-step" id="step-3" data-step="3" style="display: none;">
+                            <div class="step-header">
+                                <span class="step-percentage">25%</span>
+                            </div>
+                            <h4>Vous Habitez ? *</h4>
+                            <div class="form-options image-options">
+                                <label class="option-box image-option">
+                                    <input type="radio" name="type_logement" value="maison" required>
+                                    <div class="option-content">
+                                        <img src="images/maison.png" alt="Une maison">
+                                        <span>UNE MAISON</span>
+                                    </div>
+                                </label>
+                                <label class="option-box image-option">
+                                    <input type="radio" name="type_logement" value="appartement" required>
+                                    <div class="option-content">
+                                        <img src="images/appartement.png" alt="Un appartement">
+                                        <span>UN APPARTEMENT</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Précédent</button>
+                                <button type="button" class="next-btn">Suivant</button>
+                            </div>
+                        </div>
+
+                        <!-- Étape 4 -->
+                        <div class="form-step" id="step-4" data-step="4" style="display: none;">
+                            <div class="step-header">
+                                <span class="step-percentage">38%</span>
+                            </div>
+                            <h4>Quel est l'année de construction de votre maison ? *</h4>
+                            <div class="form-options">
+                                <label class="option-box">
+                                    <input type="radio" name="annee_construction" value="avant_2000" required>
+                                    <span>Avant 2000</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="annee_construction" value="apres_2000" required>
+                                    <span>Après 2000</span>
+                                </label>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Précédent</button>
+                                <button type="button" class="next-btn">Suivant</button>
+                            </div>
+                        </div>
+
+                        <!-- Étape 5 -->
+                        <div class="form-step" id="step-5" data-step="5" style="display: none;">
+                            <div class="step-header">
+                                <span class="step-percentage">50%</span>
+                            </div>
+                            <h4>Avez-vous déjà réalisé des travaux de rénovation ? *</h4>
+                            <div class="form-options">
+                                <label class="option-box">
+                                    <input type="radio" name="travaux_anterieurs" value="oui" required>
+                                    <span>OUI</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="travaux_anterieurs" value="non" required>
+                                    <span>NON</span>
+                                </label>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Précédent</button>
+                                <button type="button" class="next-btn">Suivant</button>
+                            </div>
+                        </div>
+
+                        <!-- Étape 6 -->
+                        <div class="form-step" id="step-6" data-step="6" style="display: none;">
+                            <div class="step-header">
+                                <span class="step-percentage">63%</span>
+                            </div>
+                            <h4>Quel type de chauffage utilisez-vous ? *</h4>
+                            <div class="form-options">
+                                <label class="option-box">
+                                    <input type="radio" name="type_chauffage" value="gaz" required>
+                                    <span>GAZ</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="type_chauffage" value="fioul" required>
+                                    <span>FIOUL</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="type_chauffage" value="electrique" required>
+                                    <span>ELECTRIQUE</span>
+                                </label>
+                                <label class="option-box">
+                                    <input type="radio" name="type_chauffage" value="autre" required>
+                                    <span>AUTRE</span>
+                                </label>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Précédent</button>
+                                <button type="button" class="next-btn">Suivant</button>
+                            </div>
+                        </div>
+
+                        <!-- Étape finale -->
+                        <div class="form-step" id="step-final" data-step="7" style="display: none;">
+                            <div class="step-header">
+                                <span class="step-percentage">75%</span>
+                                <div class="final-header">
+                                    <span class="check-icon">✓</span>
+                                    <h4>Dernière étape pour recevoir le montant de vos aides</h4>
+                                </div>
+                            </div>
+                            <div class="info-box">
+                                Le montant de vos aides peut varier en fonction de la localisation de votre logement.
+                            </div>
+                            <div class="form-contact">
+                                <div class="form-group">
+                                    <label for="code_postal">Code postal *</label>
+                                    <small class="help-text">Permet d'identifier les aides des collectivités locales.</small>
+                                    <input type="text" id="code_postal" name="code_postal" placeholder="ex: 75001" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email">Adresse électronique *</label>
+                                    <small class="help-text">Permet de suivre l'avancée de votre demande.</small>
+                                    <input type="email" id="email" name="email" placeholder="E-mail" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="nom">Nom Complet *</label>
+                                    <small class="help-text">Afin de personnaliser votre simulation</small>
+                                    <input type="text" id="nom" name="nom" placeholder="Nom" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="telephone">Téléphone *</label>
+                                    <small class="help-text">Recevez votre résultat d'aide instantanément par SMS !</small>
+                                    <input type="tel" id="telephone" name="telephone" placeholder="Téléphone (ex: 0623456789)" required>
+                                </div>
+                            </div>
+
+                            <div class="rgpd-notice">
+                                <p>Données protégées par la réglementation RGPD</p>
+                                <p class="terms">En validant ma demande, j'accepte d'être contacté concernant mon projet selon les <a href="#">Règles de confidentialité</a>. Je dispose d'un droit opposable conformément à l'article L.121-34 du Code de la consommation.</p>
+                            </div>
+
+                            <div class="form-navigation">
+                                <button type="button" class="prev-btn">Précédent</button>
+                                <button type="submit" class="submit-button">LANCER MA SIMULATION</button>
+                            </div>
+                        </div>
+
+                        <!-- Message d'erreur pour non éligibilité -->
+                        <div class="form-step error-step" id="error-step" style="display: none;">
+                            <div class="error-message">
+                                <h3>Nous sommes désolés</h3>
+                                <p>Vous ne pouvez pas bénéficier des aides de l'État.</p>
+                                <p>Ce dispositif est réservé aux propriétaires de maisons individuelles.</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="advantages">
+            <h2>Les avantages de la Rénovation d'ampleur</h2>
+            <p class="advantages-intro">Pour les particuliers, effectuer une rénovation d'ampleur possède des avantages certains,<br>en termes de confort thermique mais également au niveau des coûts de chauffage</p>
+            
+            <div class="advantages-content">
+                <div class="house-diagram">
+                    <img src="images/energie_deperdition-1024x694-1.png" alt="Schéma des déperditions énergétiques" class="diagram-img">
+                </div>
+                
+                <div class="advantages-list">
+                    <div class="advantage-item">
+                        <span class="check">✓</span>
+                        <p>Une rénovation d'ampleur permet de <strong>réduire la consommation de chauffage</strong> d'un logement de <strong>50 % à 70 %</strong></p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="check">✓</span>
+                        <p>Une <strong>amélioration du confort thermique</strong> : les biens rénovés sont en général bien plus confortables à vivre. Fini les courants d'air ou la sensation d'étouffement en été !</p>
+                    </div>
+                    <div class="advantage-item">
+                        <span class="check">✓</span>
+                        <p>Une <strong>plus-value immobilière</strong> : une rénovation de grande ampleur est également intéressante en termes immobiliers. Eh oui, un logement rénové, c'est un logement dont la plus-value sera beaucoup plus importante lors d'une vente !</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="example-works">
+            <h2>Exemple de Travaux réalisés</h2>
+            <div class="example-content">
+                <img src="images/Votre-Renovation-Energetique-1.png" alt="Exemple de rénovation" class="example-img">
+                <div class="example-details">
+                    <h3>Travaux réalisés :</h3>
+                    <ul>
+                        <li>Isolation des murs extérieurs / Isolation des sols</li>
+                        <li>Pompe à chaleur air/eau + VMC</li>
+                        <li>Chauffe-eau thermodynamique</li>
+                    </ul>
+
+                    <div class="cost-breakdown">
+                        <div class="cost-line">
+                            <span>Montant des travaux</span>
+                            <span class="amount">40 645 €</span>
+                        </div>
+                        <div class="cost-line aids">
+                            <span>Aides de l'état</span>
+                            <span class="amount">- 36 380 €</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span>Reste à charge</span>
+                            <span class="amount">4 265 €</span>
+                        </div>
+                    </div>
+
+                    <p class="subvention">subventionné à 90% par les aides financières</p>
+
+                    <div class="project-details">
+                        <div class="detail">
+                            <i class="fas fa-home"></i>
+                            <span>91 m² habitable</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-users"></i>
+                            <span>2 personnes</span>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Lyon</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Vous souhaitez connaître le montant de vos Aides ?</h2>
+            <a href="#" class="cta-button">Testez votre Éligibilité</a>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logos">
+            <img src="images/MaPrimeRenov-header.png" alt="MaPrimeRénov" class="footer-logo">
+        </div>
+        <div class="footer-links">
+            <a href="#">Règles de Confidentialité</a> |
+            <a href="#">Mentions légales</a>
+        </div>
+        <p class="copyright">Laprimerenov.net © 2008-2024</p>
+    </footer>
+</body>
+</html> 

@@ -1,0 +1,590 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+}
+
+/* Header */
+.site-header {
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.gov-logo {
+    height: 100px;
+}
+
+.prime-logo {
+    height: 60px;
+}
+
+/* Hero Section */
+.hero {
+    padding: 4rem 1rem;
+    background-color: #fff;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: #007bff;
+    background-color: #e3f2fd;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.renovation-info {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+}
+
+.highlight-orange {
+    color: #ff6b00;
+}
+
+/* Simulation Card */
+.simulation-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.simulation-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.check-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.simulation-card h2 {
+    color: #4CAF50;
+    font-size: 2rem;
+    margin: 0;
+}
+
+.simulation-card h3 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.gratuit {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Form Options */
+.eligibility-form h4 {
+    color: #0066cc;
+    margin-bottom: 1.5rem;
+}
+
+.form-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.option-box {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-box:hover {
+    border-color: #0066cc;
+    background-color: #f8f9fa;
+}
+
+.option-box input[type="radio"] {
+    margin-right: 1rem;
+}
+
+/* Advantages Section */
+.advantages {
+    padding: 4rem 1rem;
+    background-color: #f8f9fa;
+}
+
+.advantages h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.advantages-intro {
+    text-align: center;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.advantages-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
+
+.house-diagram img {
+    width: 100%;
+    height: auto;
+}
+
+.advantages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.advantage-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.check {
+    color: #4CAF50;
+    font-size: 1.5rem;
+}
+
+/* Example Works Section */
+.example-works {
+    padding: 4rem 1rem;
+    background-color: #fff;
+}
+
+.example-works h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 3rem;
+}
+
+.example-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.example-img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.example-details h3 {
+    color: #0066cc;
+    margin-bottom: 1rem;
+}
+
+.example-details ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.example-details li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.cost-breakdown {
+    background-color: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.cost-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.cost-line.aids {
+    color: #4CAF50;
+}
+
+.cost-line.total {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    font-weight: bold;
+}
+
+.subvention {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.project-details {
+    display: flex;
+    gap: 2rem;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* CTA Section */
+.cta-section {
+    padding: 4rem 1rem;
+    background-color: #f8f9fa;
+    text-align: center;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+/* Footer */
+footer {
+    background-color: #fff;
+    padding: 2rem 1rem;
+    text-align: center;
+    border-top: 1px solid #ddd;
+}
+
+.footer-logos {
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-logo {
+    height: 80px;
+}
+
+.footer-links {
+    margin-bottom: 1rem;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+}
+
+.copyright {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-logos {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .advantages-content,
+    .example-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-details {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+/* Form Contact */
+.form-contact {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #ddd;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 0 2px rgba(0,102,204,0.1);
+}
+
+.submit-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 2rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #45a049;
+}
+
+/* Progress Bar */
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background-color: #e0e0e0;
+    margin-bottom: 2rem;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4CAF50;
+    transition: width 0.3s ease;
+}
+
+/* Step Header */
+.step-header {
+    margin-bottom: 2rem;
+}
+
+.step-percentage {
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    background-color: #ffc107;
+    color: #fff;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+/* Form Steps */
+.form-step {
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+}
+
+/* Image Options */
+.image-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.image-option {
+    text-align: center;
+}
+
+.option-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.option-content img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+
+.option-content span {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Final Step */
+.final-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.check-icon {
+    font-size: 1.5rem;
+}
+
+.info-box {
+    background-color: #e3f2fd;
+    color: #0066cc;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+.help-text {
+    display: block;
+    color: #4CAF50;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Error Step */
+.error-step {
+    text-align: center;
+    padding: 2rem;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.error-message h3 {
+    margin-bottom: 1rem;
+}
+
+/* RGPD Notice */
+.rgpd-notice {
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.terms {
+    margin-top: 1rem;
+}
+
+.terms a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .image-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Form Navigation */
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+}
+
+.prev-btn,
+.next-btn {
+    padding: 0.8rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.next-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.next-btn:hover {
+    background-color: #45a049;
+}
+
+.prev-btn {
+    background-color: #f8f9fa;
+    color: #666;
+    border: 1px solid #ddd;
+}
+
+.prev-btn:hover {
+    background-color: #e9ecef;
+}
+
+/* Form Step Display */
+.form-step {
+    display: none;
+}
+
+.form-step:first-child {
+    display: block;
+} 

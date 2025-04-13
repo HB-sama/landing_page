@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function submitForm(formData) {
         try {
-            const response = await fetch(form.action, {
+            const response = await fetch('https://formspree.io/f/meoapkrw', {
                 method: 'POST',
                 body: formData,
                 headers: {
@@ -217,12 +217,13 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             if (response.ok) {
-                // Afficher le message de succès
-                const finalStep = document.querySelector('.final-step');
-                if (finalStep) {
-                    steps.forEach(step => step.style.display = 'none');
-                    finalStep.style.display = 'block';
-                }
+                // Afficher un message de succès
+                alert('Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.');
+                // Réinitialiser le formulaire
+                form.reset();
+                // Retourner à la première étape
+                currentStep = 0;
+                showStep(currentStep);
             } else {
                 throw new Error('Erreur lors de l\'envoi du formulaire');
             }

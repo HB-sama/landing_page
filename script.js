@@ -213,10 +213,9 @@ document.addEventListener('DOMContentLoaded', function() {
             formData.forEach((value, key) => {
                 formDataObject[key] = value;
             });
-
-            // URL de votre script Google Apps (vous la recevrez après le déploiement)
+    
             const scriptURL = 'https://script.google.com/macros/s/AKfycbyGxgmogSytKZ_huYjct9lVhnNxYaKvPWpCH1Q4iVuZQ5Bfxqw1DL9gtkFMQeZXyZ8O/exec';
-
+    
             const response = await fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify(formDataObject),
@@ -224,18 +223,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     'Content-Type': 'application/json'
                 }
             });
-
+    
             if (response.ok) {
-                // Cacher toutes les étapes
-                steps.forEach(step => step.style.display = 'none');
+                // Important : On cache d'abord toutes les étapes
+                document.querySelectorAll('.form-step').forEach(step => {
+                    step.style.display = 'none';
+                });
                 
-                // Afficher l'étape de confirmation
+                // Puis on affiche spécifiquement l'étape de confirmation
                 const confirmationStep = document.getElementById('confirmation-step');
                 if (confirmationStep) {
                     confirmationStep.style.display = 'block';
+                } else {
+                    console.error("L'étape de confirmation n'a pas été trouvée");
                 }
                 
-                // Réinitialiser le formulaire en arrière-plan
+                // On réinitialise le formulaire en arrière-plan
                 form.reset();
             } else {
                 throw new Error('Erreur lors de l\'envoi du formulaire');
@@ -245,4 +248,3 @@ document.addEventListener('DOMContentLoaded', function() {
             alert('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
         }
     }
-}); 

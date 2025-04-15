@@ -151,7 +151,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function showStep(stepIndex) {
         steps.forEach((step, index) => {
-            step.style.display = index === stepIndex ? 'block' : 'none';
+            if (index === stepIndex) {
+                step.style.display = 'block';
+                step.classList.add('active');
+            } else {
+                step.style.display = 'none';
+                step.classList.remove('active');
+            }
         });
         
         // Mise à jour de la barre de progression
@@ -181,6 +187,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    function validatePostalCode(code) {
+        return /^[0-9]{5}$/.test(code);
+    }
+
+    function validatePhone(phone) {
+        return /^0[1-9][0-9]{8}$/.test(phone);
+    }
+
     function validateStep(stepIndex) {
         const currentStepElement = steps[stepIndex];
         const requiredFields = currentStepElement.querySelectorAll('[required]');
@@ -192,6 +206,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 field.classList.add('error');
             } else {
                 field.classList.remove('error');
+                
+                // Validation spécifique pour le code postal et le téléphone
+                if (field.id === 'code_postal' && !validatePostalCode(field.value)) {
+                    isValid = false;
+                    field.classList.add('error');
+                    alert('Veuillez entrer un code postal valide (5 chiffres)');
+                }
+                
+                if (field.id === 'telephone' && !validatePhone(field.value)) {
+                    isValid = false;
+                    field.classList.add('error');
+                    alert('Veuillez entrer un numéro de téléphone valide (10 chiffres commençant par 0)');
+                }
             }
         });
 
@@ -208,6 +235,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function submitForm(formData) {
         try {
+            // Afficher un message de chargement
+            const submitButton = document.querySelector('.submit-button');
+            submitButton.textContent = 'Envoi en cours...';
+            submitButton.disabled = true;
+
             // Conversion des données du formulaire en objet
             const formDataObject = {};
             formData.forEach((value, key) => {
@@ -225,20 +257,25 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     
             if (response.ok) {
-                // Important : On cache d'abord toutes les étapes
-                document.querySelectorAll('.form-step').forEach(step => {
+                // Cache toutes les étapes et retire la classe active
+                steps.forEach(step => {
                     step.style.display = 'none';
+                    step.classList.remove('active');
                 });
                 
-                // Puis on affiche spécifiquement l'étape de confirmation
+                // Affiche l'étape de confirmation
                 const confirmationStep = document.getElementById('confirmation-step');
                 if (confirmationStep) {
                     confirmationStep.style.display = 'block';
+                    confirmationStep.classList.add('active');
+                    
+                    // Scroll en haut de la page
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 } else {
                     console.error("L'étape de confirmation n'a pas été trouvée");
                 }
                 
-                // On réinitialise le formulaire en arrière-plan
+                // Réinitialisation du formulaire
                 form.reset();
             } else {
                 throw new Error('Erreur lors de l\'envoi du formulaire');
@@ -246,5 +283,11 @@ document.addEventListener('DOMContentLoaded', function() {
         } catch (error) {
             console.error('Erreur:', error);
             alert('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
+        } finally {
+            // Réinitialiser le bouton de soumission
+            const submitButton = document.querySelector('.submit-button');
+            submitButton.textContent = 'LANCER MA SIMULATION';
+            submitButton.disabled = false;
         }
     }
+});

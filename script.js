@@ -70,10 +70,40 @@ document.addEventListener('DOMContentLoaded', function() {
     // Appel initial pour vérifier les éléments visibles au chargement
     animateOnScroll();
 
-    const form = document.getElementById('eligibility-form');
+    const form = document.getElementById('multi-step-form');
     const steps = document.querySelectorAll('.form-step');
     const progressBar = document.querySelector('.progress');
     let currentStep = 0;
+
+    // Gestion du formulaire principal
+    if (form) {
+        // Empêcher la soumission par défaut du formulaire
+        form.onsubmit = function(e) {
+            e.preventDefault();
+            return false;
+        };
+
+        // Gestionnaire pour le bouton de soumission
+        const submitButton = form.querySelector('.submit-button');
+        if (submitButton) {
+            submitButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                console.log('Bouton de soumission cliqué');
+                
+                if (validateStep(currentStep)) {
+                    const formData = new FormData(form);
+                    
+                    // Vérification de l'éligibilité
+                    if (formData.get('statut') === 'locataire' || 
+                        formData.get('type_logement') === 'appartement') {
+                        showErrorStep();
+                    } else {
+                        showConfirmationStep();
+                    }
+                }
+            });
+        }
+    }
 
     // Fonction de réinitialisation du formulaire
     function resetForm() {
@@ -119,6 +149,23 @@ document.addEventListener('DOMContentLoaded', function() {
         button.addEventListener('click', function(e) {
             e.preventDefault();
             if (validateStep(currentStep)) {
+                // Vérifier l'éligibilité avant de passer à l'étape suivante
+                const formData = new FormData(form);
+                const currentStepElement = steps[currentStep];
+                
+                // Vérification pour l'étape 2 (statut - locataire)
+                if (currentStepElement.id === 'step-2' && formData.get('statut') === 'locataire') {
+                    showErrorStep();
+                    return;
+                }
+                
+                // Vérification pour l'étape 3 (type de logement - appartement)
+                if (currentStepElement.id === 'step-3' && formData.get('type_logement') === 'appartement') {
+                    showErrorStep();
+                    return;
+                }
+                
+                // Si tout est OK, passer à l'étape suivante
                 nextStep();
             }
         });
@@ -130,31 +177,6 @@ document.addEventListener('DOMContentLoaded', function() {
             prevStep();
         });
     });
-
-    // Gestion de la soumission du formulaire
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            // Empêcher le comportement par défaut du formulaire
-            e.preventDefault();
-            e.stopPropagation();
-            
-            console.log('Formulaire soumis');
-            
-            if (validateStep(currentStep)) {
-                const formData = new FormData(form);
-                
-                // Vérification de l'éligibilité
-                if (formData.get('statut') === 'locataire' || 
-                    formData.get('type_logement') === 'appartement') {
-                    showErrorStep();
-                } else {
-                    // Afficher l'étape de confirmation
-                    showConfirmationStep();
-                }
-            }
-            return false; // Empêcher la soumission du formulaire
-        });
-    }
 
     function showStep(stepIndex) {
         steps.forEach((step, index) => {
@@ -268,6 +290,15 @@ document.addEventListener('DOMContentLoaded', function() {
         if (errorStep) {
             errorStep.style.display = 'block';
             console.log('Étape d\'erreur trouvée et affichée');
+            
+            // Ajouter le gestionnaire d'événements pour le bouton Retour
+            const prevButton = errorStep.querySelector('.prev-btn');
+            if (prevButton) {
+                prevButton.onclick = function() {
+                    // Revenir à l'étape précédente
+                    prevStep();
+                };
+            }
         } else {
             console.error('Étape d\'erreur non trouvée');
         }

@@ -208,22 +208,35 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function submitForm(formData) {
         try {
-            const response = await fetch('https://formspree.io/f/meoapkrw', {
+            // Conversion des données du formulaire en objet
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+
+            // URL de votre script Google Apps (vous la recevrez après le déploiement)
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyGxgmogSytKZ_huYjct9lVhnNxYaKvPWpCH1Q4iVuZQ5Bfxqw1DL9gtkFMQeZXyZ8O/exec';
+
+            const response = await fetch(scriptURL, {
                 method: 'POST',
-                body: formData,
+                body: JSON.stringify(formDataObject),
                 headers: {
-                    'Accept': 'application/json'
+                    'Content-Type': 'application/json'
                 }
             });
 
             if (response.ok) {
-                // Afficher un message de succès
-                alert('Votre demande a été envoyée avec succès ! Nous vous contacterons bientôt.');
-                // Réinitialiser le formulaire
+                // Cacher toutes les étapes
+                steps.forEach(step => step.style.display = 'none');
+                
+                // Afficher l'étape de confirmation
+                const confirmationStep = document.getElementById('confirmation-step');
+                if (confirmationStep) {
+                    confirmationStep.style.display = 'block';
+                }
+                
+                // Réinitialiser le formulaire en arrière-plan
                 form.reset();
-                // Retourner à la première étape
-                currentStep = 0;
-                showStep(currentStep);
             } else {
                 throw new Error('Erreur lors de l\'envoi du formulaire');
             }

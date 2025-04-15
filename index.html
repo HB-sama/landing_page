@@ -34,7 +34,7 @@
                     <h3>Vérifiez Votre Éligibilité à la Rénovation d'Ampleur et découvrez le montant de vos Aides</h3>
                     <p class="gratuit">100% Gratuit et sans engagements</p>
 
-                    <form class="eligibility-form" id="multi-step-form" action="https://formspree.io/f/meoapkrw" method="POST">
+                    <form class="eligibility-form" id="multi-step-form">
                         <!-- Barre de progression -->
                         <div class="progress-bar">
                             <div class="progress" id="form-progress"></div>
@@ -254,6 +254,26 @@
                                 <h3>Nous sommes désolés</h3>
                                 <p>Vous ne pouvez pas bénéficier des aides de l'État.</p>
                                 <p>Ce dispositif est réservé aux propriétaires de maisons individuelles.</p>
+                            </div>
+                        </div>
+
+                        <!-- Étape de confirmation -->
+                        <div class="form-step confirmation-step" id="confirmation-step" style="display: none;">
+                            <div class="confirmation-message">
+                                <div class="final-header success">
+                                    <span class="check-icon">✓</span>
+                                    <h4>Merci pour vos réponses !</h4>
+                                </div>
+                                
+                                <div class="confirmation-content">
+                                    <p>Un conseiller en rénovation énergétique va vous contacter dans les plus brefs délais pour vous poser quelques questions complémentaires.</p>
+                                    <p>Cela nous permettra de valider définitivement votre dossier et de vous indiquer le montant exact des aides auxquelles vous pouvez prétendre.</p>
+                                    
+                                    <div class="phone-alert">
+                                        <span class="phone-icon">📞</span>
+                                        <p>Restez joignable, c'est la dernière étape avant de découvrir vos droits aux aides pour une rénovation d'ampleur !</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>

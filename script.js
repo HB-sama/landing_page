@@ -134,7 +134,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Gestion de la soumission du formulaire
     if (form) {
         form.addEventListener('submit', function(e) {
+            // Empêcher le comportement par défaut du formulaire
             e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('Formulaire soumis');
+            
             if (validateStep(currentStep)) {
                 const formData = new FormData(form);
                 
@@ -143,9 +148,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     formData.get('type_logement') === 'appartement') {
                     showErrorStep();
                 } else {
-                    submitForm(formData);
+                    // Afficher l'étape de confirmation
+                    showConfirmationStep();
                 }
             }
+            return false; // Empêcher la soumission du formulaire
         });
     }
 
@@ -225,69 +232,54 @@ document.addEventListener('DOMContentLoaded', function() {
         return isValid;
     }
 
+    // Fonction pour afficher l'étape de confirmation
+    function showConfirmationStep() {
+        console.log('Affichage de l\'étape de confirmation');
+        
+        // Cacher toutes les étapes
+        steps.forEach(step => {
+            step.style.display = 'none';
+        });
+        
+        // Afficher l'étape de confirmation
+        const confirmationStep = document.getElementById('confirmation-step');
+        if (confirmationStep) {
+            confirmationStep.style.display = 'block';
+            console.log('Étape de confirmation trouvée et affichée');
+        } else {
+            console.error('Étape de confirmation non trouvée');
+        }
+        
+        // Scroll en haut de la page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Fonction pour afficher l'étape d'erreur
     function showErrorStep() {
-        const errorStep = document.querySelector('.error-step');
+        console.log('Affichage de l\'étape d\'erreur');
+        
+        // Cacher toutes les étapes
+        steps.forEach(step => {
+            step.style.display = 'none';
+        });
+        
+        // Afficher l'étape d'erreur
+        const errorStep = document.getElementById('error-step');
         if (errorStep) {
-            steps.forEach(step => step.style.display = 'none');
             errorStep.style.display = 'block';
+            console.log('Étape d\'erreur trouvée et affichée');
+        } else {
+            console.error('Étape d\'erreur non trouvée');
         }
+        
+        // Scroll en haut de la page
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // Commenté temporairement la fonction submitForm
+    /*
     async function submitForm(formData) {
-        try {
-            // Afficher un message de chargement
-            const submitButton = document.querySelector('.submit-button');
-            submitButton.textContent = 'Envoi en cours...';
-            submitButton.disabled = true;
-
-            // Conversion des données du formulaire en objet
-            const formDataObject = {};
-            formData.forEach((value, key) => {
-                formDataObject[key] = value;
-            });
-    
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbyGxgmogSytKZ_huYjct9lVhnNxYaKvPWpCH1Q4iVuZQ5Bfxqw1DL9gtkFMQeZXyZ8O/exec';
-    
-            const response = await fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(formDataObject),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-    
-            if (response.ok) {
-                // Cache toutes les étapes et retire la classe active
-                steps.forEach(step => {
-                    step.style.display = 'none';
-                    step.classList.remove('active');
-                });
-                
-                // Affiche l'étape de confirmation
-                const confirmationStep = document.getElementById('confirmation-step');
-                if (confirmationStep) {
-                    confirmationStep.style.display = 'block';
-                    confirmationStep.classList.add('active');
-                    
-                    // Scroll en haut de la page
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    console.error("L'étape de confirmation n'a pas été trouvée");
-                }
-                
-                // Réinitialisation du formulaire
-                form.reset();
-            } else {
-                throw new Error('Erreur lors de l\'envoi du formulaire');
-            }
-        } catch (error) {
-            console.error('Erreur:', error);
-            alert('Une erreur est survenue lors de l\'envoi du formulaire. Veuillez réessayer.');
-        } finally {
-            // Réinitialiser le bouton de soumission
-            const submitButton = document.querySelector('.submit-button');
-            submitButton.textContent = 'LANCER MA SIMULATION';
-            submitButton.disabled = false;
-        }
+        // ... code commenté ...
     }
+    */
 });

@@ -93,12 +93,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (validateStep(currentStep)) {
                     const formData = new FormData(form);
                     
-                    // Vérification de l'éligibilité
-                    if (formData.get('statut') === 'locataire' || 
-                        formData.get('type_logement') === 'appartement') {
+                    // Vérification uniquement du statut de locataire
+                    if (formData.get('statut') === 'locataire') {
                         showErrorStep();
                     } else {
-                        showConfirmationStep();
+                        // Envoyer l'email avant d'afficher la confirmation
+                        sendEmail(formData).then(success => {
+                            if (success) {
+                                showConfirmationStep();
+                            } else {
+                                alert('Une erreur est survenue lors de l\'envoi des données. Veuillez réessayer.');
+                            }
+                        });
                     }
                 }
             });
@@ -153,14 +159,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 const formData = new FormData(form);
                 const currentStepElement = steps[currentStep];
                 
-                // Vérification pour l'étape 2 (statut - locataire)
+                // Vérification uniquement pour l'étape 2 (statut - locataire)
                 if (currentStepElement.id === 'step-2' && formData.get('statut') === 'locataire') {
-                    showErrorStep();
-                    return;
-                }
-                
-                // Vérification pour l'étape 3 (type de logement - appartement)
-                if (currentStepElement.id === 'step-3' && formData.get('type_logement') === 'appartement') {
                     showErrorStep();
                     return;
                 }
@@ -307,10 +307,33 @@ document.addEventListener('DOMContentLoaded', function() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    // Commenté temporairement la fonction submitForm
-    /*
-    async function submitForm(formData) {
-        // ... code commenté ...
+    // Fonction pour envoyer l'email
+    async function sendEmail(formData) {
+        try {
+            const templateParams = {
+                type_travaux: formData.get('type_travaux'),
+                statut: formData.get('statut'),
+                type_logement: formData.get('type_logement'),
+                annee_construction: formData.get('annee_construction'),
+                travaux_anterieurs: formData.get('travaux_anterieurs'),
+                type_chauffage: formData.get('type_chauffage'),
+                code_postal: formData.get('code_postal'),
+                email: formData.get('email'),
+                nom: formData.get('nom'),
+                telephone: formData.get('telephone')
+            };
+
+            const response = await emailjs.send(
+                "service_p2k9216", // Service ID
+                "template_2jmhoqb", // Template ID
+                templateParams
+            );
+
+            console.log('Email envoyé avec succès:', response);
+            return true;
+        } catch (error) {
+            console.error('Erreur lors de l\'envoi de l\'email:', error);
+            return false;
+        }
     }
-    */
 });
